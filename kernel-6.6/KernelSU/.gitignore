@@ -1,8 +1,1 @@
-.idea
-.vscode
-CLAUDE.md
-AGENTS.md
-.DS_Store
-/target
-.cargo/config.toml
-__pycache__
+10_enable_susfs_for_ksu.patch
