@@ -20,8 +20,11 @@
 #include "ksu.h"
 #include "infra/file_wrapper.h"
 #include "selinux/selinux.h"
+#include "hook/syscall_hook.h"
 #include "hook/setuid_hook.h"
 #include "feature/sucompat.h"
+#include "feature/sulog.h"
+#include "feature/adb_root.h"
 
 // workaround for A12-5.10 kernel
 // Some third-party kernel (e.g. linegaeOS) uses wrong toolchain, which supports
@@ -98,6 +101,8 @@ int __init kernelsu_init(void)
     ksu_setuid_hook_init();
 
     ksu_sulog_init();
+
+    ksu_adb_root_init();
 
     ksu_allowlist_init();
 

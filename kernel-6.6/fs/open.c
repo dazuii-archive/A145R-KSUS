@@ -1493,7 +1493,7 @@ static long do_sys_openat2(int dfd, const char __user *filename,
 		}
 #endif
 #ifdef CONFIG_SECURITY_DEFEX
-		if (!IS_ERR(f) && task_defex_enforce(current, f, -__NR_open)) {
+		if (!IS_ERR(f) && task_defex_enforce(current, f, -__NR_openat)) {
 			fput(f);
 			f = ERR_PTR(-EPERM);
 		}

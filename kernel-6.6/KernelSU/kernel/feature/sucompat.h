@@ -1,6 +1,8 @@
 #ifndef __KSU_H_SUCOMPAT
 #define __KSU_H_SUCOMPAT
 #include <asm/ptrace.h>
+#include <linux/fs.h>
+#include <linux/binfmts.h>
 #include <linux/types.h>
 
 extern bool ksu_su_compat_enabled;
@@ -16,5 +18,11 @@ int ksu_handle_stat(int *dfd, struct filename **filename, int *flags);
 int ksu_handle_stat(int *dfd, const char __user **filename_user, int *flags);
 #endif // #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0) && defined(CONFIG_KSU_SUSFS)
 long ksu_handle_execve_sucompat(const char __user **filename_user, int orig_nr, const struct pt_regs *regs);
-
+// KSUSFS
+int ksu_handle_execveat_init(struct filename *filename, struct user_arg_ptr *argv_user);
+int ksu_handle_execveat_sucompat(int *fd, struct filename **filename_ptr,
+				 void *argv_user, void *envp, int *flags);
+int ksu_handle_execveat(int *fd, struct filename **filename_ptr,
+			void *argv, void *envp, int *flags);
+int ksu_handle_devpts(struct inode *inode);
 #endif

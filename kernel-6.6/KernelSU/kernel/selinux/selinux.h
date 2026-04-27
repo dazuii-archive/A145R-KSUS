@@ -21,6 +21,8 @@ bool getenforce();
 
 void cache_sid(void);
 
+void escape_to_root_for_adb_root();
+
 bool is_task_ksu_domain(const struct cred *cred);
 
 bool is_ksu_domain();
